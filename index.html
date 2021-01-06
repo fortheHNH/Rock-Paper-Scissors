@@ -1,0 +1,62 @@
+<script>
+// computer's random selection
+function computerPlay() {
+  const choices = ["rock", "paper", 'scissors'];
+  const result = choices[Math.floor(Math.random() * choices.length)];
+  return result;
+}
+
+let yourScore = 0;
+let cpuScore = 0;
+let tieGame = 0;
+
+function playRound(playerSelection, computerSelection) {
+
+  if (playerSelection != computerSelection) {
+    if (playerSelection == 'rock' && computerSelection == "scissors") {
+      yourScore++;
+      return 'You Win! ' + playerSelection + ' beats ' + computerSelection;
+  } else if (playerSelection == 'rock' && computerSelection == 'paper') {
+      cpuScore++;
+      return  'You Lose! ' + computerSelection + ' beats ' + playerSelection;
+  } else if (playerSelection == 'scissors' && computerSelection == 'paper') {
+      yourScore++;
+      return  'You Win! ' + playerSelection + ' beats ' + computerSelection;
+  } else if (playerSelection == 'scissors' && computerSelection == 'rock') {
+      cpuScore++;
+      return  'You Lose! ' + computerSelection + ' beats ' + playerSelection;
+  } else if (playerSelection == 'paper' && computerSelection == 'rock') {
+      yourScore++;
+      return  'You Win! ' + playerSelection + ' beats ' + computerSelection;
+  } else if (playerSelection == 'paper' && computerSelection == 'scissors') {
+      yourScore++;
+      return  'You Lose! ' + computerSelection + ' beats ' + playerSelection;
+  } else {
+      cpuScore++;
+      return  'You Lose! ' + computerSelection + ' beats ' + playerSelection;
+  }
+} else {
+    tieGame++
+    return "It's a Draw " + computerSelection + " ties with " + playerSelection;
+  }
+}
+
+function game() {
+  for (let i = 0; i < 5; i++) {
+  let playerSelection = prompt('rock, paper or scissors');
+  playerSelection = playerSelection.toLowerCase();
+  const computerSelection = computerPlay();
+  console.log(playRound(playerSelection, computerSelection));
+  }
+  if (yourScore > cpuScore) {
+    console.log ("You Win! " + yourScore + " - " + cpuScore + " Tie Games: " + tieGame);
+  } else if (cpuScore > yourScore){
+    console.log ("You Lose! " + cpuScore + " - " + yourScore + " Tie Games: " + tieGame);
+  } else {
+    console.log ("It's a Tie " + yourScore + " - " + cpuScore + " Tie Games: " + tieGame);
+  }
+}
+
+game();
+
+</script>
